@@ -1,9 +1,14 @@
 import express from 'express';
+import { Config } from './utils/config';
+
+Config.load(); // Load configuration at startup
+//read validated config object >>
+const config = Config.getConfig();
 
 const app = express();
-const PORT = 7010;
+const PORT = config.lbPORT;
 
-app.get('/', (req, res) => {
+app.get('/', (_req, res) => {
   res.send('Load Balancer v1.0');
 });
 
